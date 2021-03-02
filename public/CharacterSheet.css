@@ -41,6 +41,6 @@ label{
   flex-direction: column;
 }
 
-.aptitudes-input{
-  font-size: 1.5em;
+.character-aptitudes, .aptitudes-input{
+  font-size: 1.25em;
 }
