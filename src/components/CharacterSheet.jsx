@@ -40,6 +40,9 @@ const staticData = {
           som: -1,
           wil: -1,
         },
+        skillMods: {
+          animalHandling: 0,
+        },
         cost: 0
       }, 
       normal: {
@@ -52,6 +55,9 @@ const staticData = {
           sav: 0,
           som: 0,
           wil: 0,
+        },
+        skillMods: {
+          climbing: +10
         },
         cost: 0
       }, 
@@ -66,6 +72,10 @@ const staticData = {
           som: 3,
           wil: 0,
         },
+        skillMods: {
+          animalHandling: +10,
+          disguise: +5
+        },
         cost: 10
       }, 
       gradeFour: {
@@ -78,6 +88,11 @@ const staticData = {
           sav: 0,
           som: 5,
           wil: 0,
+        },
+        skillMods: {
+          blades: +10,
+          climbing: +5,
+          control: +5
         },
         cost: 20
       }, 
@@ -103,6 +118,36 @@ const staticData = {
       green: {label: 'Green Team'}
     }
   },
+  skills: {
+    animalHandling: {
+      lable: 'Animal Handling',
+      aptitudeKey: 'sav'
+    },
+    beamWeapons: {
+      lable: 'Beam Weapons',
+      aptitudeKey: 'coo'
+    },
+    blades: {
+      lable: 'Blades',
+      aptitudeKey: 'som'
+    },
+    climbing: {
+      lable: 'Climbing',
+      aptitudeKey: 'som'
+    },
+    clubs: {
+      lable: 'Clubs',
+      aptitudeKey: 'som'
+    },
+    constrol: {
+      lable: 'Control',
+      aptitudeKey: 'wil'
+    },
+    deception: {
+      lable: 'Deception',
+      aptitudeKey: 'sav'
+    }
+  }
 }
 
 //this data black will be defined by the static date but the values will be set by user, saved to the DB, and then loard back.
@@ -122,7 +167,16 @@ const dynamicData = {
   },
   sleeve: 'default',
   backGround: 'default',
-  faction: 'default'
+  faction: 'default',
+  skills: {
+    animalHandling: 0,
+    beamWeapons: 0,
+    blades:  0,
+    climbing: 0,
+    clubs: 0,
+    constrol: 0,
+    deception: 0
+  }
 }
 
 function keyGen() {
@@ -194,6 +248,60 @@ function Aptitudes (props) {
         )
 
       } ) }
+      <label 
+        className='single-aptitude'
+      >
+        <p>Aptitudes</p>
+        <p>Base Score</p>
+        <p>Sleeve Mod</p>
+        <p>Total</p>
+      </label>   
+    </section>
+  )
+}
+
+function Skill (props){
+  const fixed = props.dataStatic;
+  const dynamic = props.dataDynmic;
+  return (
+    <section className='skill_block'>
+      <label className='skill_row skill_header'>
+        <p className='skill_text' >Skill Name</p>
+        <p className='skill_text' >Aptitude</p>
+        <p className='skill_num' >Total</p>
+        <p className='skill_num' >Ranks</p>
+        <p className='skill_num' >Apt. Mod</p>
+        <p className='skill_num' >Sleeve Mod</p>
+      </label>
+      {Object.keys(fixed.skills).map( skill =>{
+        const item = fixed.skills[skill];
+        const itemRank = dynamic.skills[skill];
+        const aptitudeBonus = dynamic.aptitudes[item.aptitudeKey].total;
+        const morphMod = fixed.sleeve.options[dynamic.sleeve].skillMods[skill];
+        const morphBonus =  morphMod ? morphMod : 0 ;
+        const itemTotal = itemRank + aptitudeBonus + morphBonus;
+        return(
+          <label 
+            className='skill_row'
+            key={['skill', skill].join('_')}
+          >
+            <p className='skill_text' >{item.lable}</p>
+            <p className='skill_text' >{item.aptitudeKey.toUpperCase()}</p>
+            <p className='skill_num' >{itemTotal}</p>
+            <input
+              className='skill_input'
+              type='number' 
+              min='0' max='60' 
+              value={itemRank}
+              step='5'
+              onChange={event => props.handleChange(event, skill)}
+              key={['skill', skill, 'input'].join('_')}
+            />
+            <p className='skill_num' >{aptitudeBonus}</p>
+            <p className='skill_num' >{morphBonus}</p>
+          </label>
+        )
+      })}      
     </section>
   )
 }
@@ -223,7 +331,40 @@ class CharacterSheet extends Component {
     this.setState(newState);
   }
 
+  componentDidUpdate () {
+    //Calc Total for Apts
+    const apts = this.state.aptitudes
+    Object.keys(apts).forEach( key => {
+      const apt = apts[key];
+      let morphBonus = apt.morphBonus;
+      const sleeveBounse = this.staticData.sleeve.options[this.state.sleeve].aptitudesMods[key];
+      const state = this.state;
+      let change = false;
+      
+      //check for new sleeve bounses
+      if(morphBonus !== sleeveBounse){
+        state.aptitudes[key].morphBonus = sleeveBounse;        
+        morphBonus = sleeveBounse;
+        change = true;
+      }
+      
+      const baseApt = apt.value;
+      const total = apt.total;
+      const newTotal = baseApt + morphBonus;
+
+      //check for new apts totals;
+      if(total !== newTotal){
+        state.aptitudes[key].total = newTotal;
+        change = true;
+      }
+
+      if(change) this.setState(state);
+
+    })
+  }
+
   render(){
+    const {} = this.staticData;
     const formMap = this.staticData;
     return(
       <>
@@ -249,17 +390,28 @@ class CharacterSheet extends Component {
                 key={[item.type, key].join('_')}
               />
             )
+          } else if (!item.type) {
+            return <></>
           } else {
             return <p>Failed to render element</p>
           }
         })}
+        <br/>
         <Aptitudes 
           data={this.state.aptitudes}
           handleChange={(event, keyOne, keyTwo ) => this.handleInputChange(event, 'aptitudes', keyOne, keyTwo)}
         />
+        <br/>
+        <Skill
+          dataDynmic={this.state}
+          dataStatic={this.staticData}
+          handleChange={(event, skill) => this.handleInputChange(event, 'skills', skill)}
+        />
+        <br/>
         <button onClick={()=>{
           console.log(this.state);
         }}>Report</button>
+        <br/>
       </>
     )
   }
