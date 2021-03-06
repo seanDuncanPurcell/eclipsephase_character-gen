@@ -3,8 +3,8 @@
   margin: 0;
 }
 
-label{
-  display: flex;
+body{
+  padding: 5px;
 }
 
 /* Hover Tool Tips */
@@ -87,16 +87,46 @@ label{
   text-align: end;
 }
 
-.skill_template-lable{
+.skill_template-label{
   display: flex;
   justify-content: flex-end;
 }
 
-.skill_template-lable > *{
+.skill_template-label > *{
   margin-left: 5px;
 }
 
 .skill_header{
   font-weight: bold;
   background-color: rgb(124, 124, 124);
+}
+
+/* Background Section */
+.char-bckgrnd{
+  border: 1px solid black;
+  padding: 10px;
+  width: 80ch;
+}
+.char-bckgrnd > h2{
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.char-bckgrnd__main-selector, .char-bckgrnd__skill-line{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+.char-bckgrnd__main-selector{
+  border: 1px solid red;
+  width: 30ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.char-bckgrnd__skill-line{
+  border: 1px solid green;
+  width: 40ch;
+}
+.char-bckgrnd__skill-line > strong > select{
+  margin-left: 5px;
 }
