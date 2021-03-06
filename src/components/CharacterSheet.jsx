@@ -41,7 +41,7 @@ const staticData = {
           som: 0,
           wil: 0,
         },
-        aptitudesMax: 0,
+        aptitudesMax: 25,
         skillMods: {
           animalHandling: 0,
         },
@@ -60,12 +60,12 @@ const staticData = {
         },
         aptitudesMax: 25,
         skillMods: {
-          climbing: +10
+          climbing: 0
         },
         cost: 0
       }, 
-      gradeThree: {
-        label: 'Grade 3',
+      gradeTwo: {
+        label: 'Grade 2',
         aptitudesMods: {
           cog: 3,
           coo: 0,
@@ -77,13 +77,12 @@ const staticData = {
         },
         aptitudesMax: 30,
         skillMods: {
-          animalHandling: +10,
-          disguise: +5
+          animalHandling: 0
         },
         cost: 10
       }, 
-      gradeFour: {
-        label: 'Grade 4',
+      gradeThree: {
+        label: 'Grade 3',
         aptitudesMods: {
           cog: 5,
           coo: 0,
@@ -96,8 +95,6 @@ const staticData = {
         aptitudesMax: 40,
         skillMods: {
           blades: +10,
-          climbing: +5,
-          control: +5
         },
         cost: 20
       }, 
@@ -145,7 +142,7 @@ const staticData = {
         creditMod: 5000
       },
       fallEvacuee: {
-        label: 'Fall Evacuee',
+        label: 'FALL EVACUEE',
         description: `You were born and raised on Earth and evacuated
         during the horrors of the Fall, leaving your old life
         (and possibly your friends, family, and loved ones)
@@ -222,7 +219,7 @@ const staticData = {
             'exoticRanged', 'flight', 'fray',
             'freeFall', 'freeRunning', 'gunnery',
             'hardware', 'impersonatoin', 'infiltration',
-            'infoSec', 'interface', 'intimidation',
+            'infoSec', 'interfacing', 'intimidation',
             'investigation', 'kinesice', 'kineticWeapons',
             'medicine', 'networking', 'palming',
             'perception', 'persuasion', 'pilot',
@@ -240,7 +237,7 @@ const staticData = {
             'exoticRanged', 'flight', 'fray',
             'freeFall', 'freeRunning', 'gunnery',
             'hardware', 'impersonatoin', 'infiltration',
-            'infoSec', 'interface', 'intimidation',
+            'infoSec', 'interfacing', 'intimidation',
             'investigation', 'kinesice', 'kineticWeapons',
             'medicine', 'networking', 'palming',
             'perception', 'persuasion', 'pilot',
@@ -297,7 +294,7 @@ const staticData = {
         moxieMod: 1,
         creditMod: 5000
       },
-      martianBorn: {
+      marsborn: {
         label: 'MARSBORN',
         description: `You were raised in a station on or above Mars, now
         the most populated planet in the system. Your home
@@ -496,7 +493,7 @@ const staticData = {
             'exoticRanged', 'flight', 'fray',
             'freeFall', 'freeRunning', 'gunnery',
             'hardware', 'impersonatoin', 'infiltration',
-            'infoSec', 'interface', 'intimidation',
+            'infoSec', 'interfacing', 'intimidation',
             'investigation', 'kinesice', 'kineticWeapons',
             'medicine', 'networking', 'palming',
             'perception', 'persuasion', 'pilot',
@@ -591,7 +588,7 @@ const staticData = {
             'exoticRanged', 'flight', 'fray',
             'freeFall', 'freeRunning', 'gunnery',
             'hardware', 'impersonatoin', 'infiltration',
-            'infoSec', 'interface', 'intimidation',
+            'infoSec', 'interfacing', 'intimidation',
             'investigation', 'kinesice', 'kineticWeapons',
             'medicine', 'networking', 'palming',
             'perception', 'persuasion', 'pilot',
@@ -646,7 +643,7 @@ const staticData = {
             'exoticRanged', 'flight', 'fray',
             'freeFall', 'freeRunning', 'gunnery',
             'hardware', 'impersonatoin', 'infiltration',
-            'infoSec', 'interface', 'intimidation',
+            'infoSec', 'interfacing', 'intimidation',
             'investigation', 'kinesice', 'kineticWeapons',
             'medicine', 'networking', 'palming',
             'perception', 'persuasion', 'pilot',
@@ -789,6 +786,7 @@ const staticData = {
   skills: {
     academics: {
       label: 'Academics',
+      tags: ['Knowledge'],
       aptitudeKey: 'cog',
       options: [
         'Archeology', 'Astrobiology', 'Astronomy',
@@ -804,11 +802,13 @@ const staticData = {
     },
     animalHandling: {
       label: 'Animal Handling',
+      tags: ['Active', 'Social'],
       aptitudeKey: 'sav'
     },
     art: {
       label: 'Art',
       aptitudeKey: 'int',
+      tags: ['Knowledge'],
       options: [
         'Architecture', 'Criticism', 'Dance',
         'Drama', 'Drawing', 'Painting',
@@ -818,68 +818,84 @@ const staticData = {
     },
     beamWeapons: {
       label: 'Beam Weapons',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'coo'
     },
     blades: {
       label: 'Blades',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'som'
     },
     climbing: {
       label: 'Climbing',
+      tags: ['Active', 'Physical'],
       aptitudeKey: 'som'
     },
     clubs: {
       label: 'Clubs',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'som'
     },
-    constrol: {
+    control: {
       label: 'Control',
+      tags: ['Active', 'Mental', 'Psi'],
       aptitudeKey: 'wil'
     },
     deception: {
       label: 'Deception',
+      tags: ['Active', 'Social'],
       aptitudeKey: 'sav'
     },
     demolitions: {
       label: 'Demolitions',
+      tags: ['Active', 'Technical'],
       aptitudeKey: 'cog'
     },
     disguise: {
       label: 'Disguise',
+      tags: ['Active', 'Pysical'],
       aptitudeKey: 'int'
     },
     exoticMelee: {
       label: 'Exotic Melee',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'som',
       options: ['Morning-Star', 'Spear', 'Whip']
     },
     exoticRanged: {
       label: 'Exotic Ranged',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'coo',
       options: ['Blowgun', 'Crossbow', 'Slingshot']
     },
     flight: {
       label: 'Flight',
+      tags: ['Active', 'Physical'],
       aptitudeKey: 'som'
     },
     fray: {
       label: 'Fray',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'ref'
     },
     freeFall: {
       label: 'Free Fall',
+      tags: ['Active', 'Physical'],
       aptitudeKey: 'ref'
     },
     freeRunning: {
       label: 'Freerunning',
+      tags: ['Active', 'Physical'],
       aptitudeKey: 'som'
     },
     gunnery: {
       label: 'Gunnery',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'int'
     },
     hardware: {
       label: 'Hardware',
+      tags: ['Active', 'Technical'],
       aptitudeKey: 'cog',
       options: [
         'Aerospace', 'Armorer', 'Electronics', 'Groundcraft', 
@@ -888,18 +904,22 @@ const staticData = {
     },
     impersonatoin: {
       label: 'Impersonation',
+      tags: ['Active', 'Social'],
       aptitudeKey: 'sav'
     },
     infiltration: {
       label: 'Infiltration',
+      tags: ['Active', 'Physical'],
       aptitudeKey: 'coo'
     },
     infoSec: {
       label: 'Infosec',
+      tags: ['Active', 'Technical'],
       aptitudeKey: 'cog'
     },
     interest: {
       label: 'Interest',
+      tags: ['Knowledge'],
       aptitudeKey: 'cog',
       options: [
         'Ancient_Sports', 'Celebrity_Gossip', 'Conspiracies',
@@ -909,28 +929,34 @@ const staticData = {
         'Spaceship_Models', 'Triad_Economics', 'Underground_XP'
       ]
     },
-    interface: {
+    interfacing: {
       label: 'Interfacing',
+      tags: ['Active', 'Technical'],
       aptitudeKey: 'cog'
     },
     intimidation: {
       label: 'Intimidation',
+      tags: ['Active', 'Social'],
       aptitudeKey: 'sav'
     },
     investigation: {
       label: 'Investigation',
+      tags: ['Active', 'Mental'],
       aptitudeKey: 'int'
     },
     kinesice: {
       label: 'Kinesics',
+      tags: ['Active', 'Social'],
       aptitudeKey: 'sav'
     },
     kineticWeapons: {
       label: 'Kinetic Weapons',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'coo'
     },
     language: {
       label: 'Language',
+      tags: ['Knowledge'],
       aptitudeKey: 'int',
       options: [
         'Arabic', 'Bangali', 'Cantonese', 'English',
@@ -942,6 +968,7 @@ const staticData = {
     medicine: {
       label: 'Medicine',
       aptitudeKey: 'cog',
+      tags: ['Active', 'Technical'],
       options: [
         'Biosculpting', 'Exotic-Biomorphs', 'Gene-Therapy,', 'General-Practice', 
         'Implant-Surgery', 'Nanomedicine', 'Paramedic', 'Pods', 'Psychiatry', 'Remote-Surgery', 
@@ -950,10 +977,12 @@ const staticData = {
     },
     navigation: {
       label: 'Navigation',
+      tags: ['Active', 'Mental'],
       aptitudeKey: 'int'
     },
     networking: {
       label: 'Networking',
+      tags: ['Active', 'Social'],
       aptitudeKey: 'sav',
       options: [
         'Autonomists', 'Criminals', 'Ecologists', 'Firewall', 
@@ -962,18 +991,22 @@ const staticData = {
     },
     palming: {
       label: 'Palming',
+      tags: ['Active', 'Physical'],
       aptitudeKey: 'coo'
     },
     perception: {
       label: 'Perception',
+      tags: ['Active', 'Mental'],
       aptitudeKey: 'int'
     },
     persuasion: {
       label: 'Persuasion',
+      tags: ['Active', 'Social'],
       aptitudeKey: 'sav'
     },
     pilot: {
       label: 'Pilot',
+      tags: ['Active', 'Vehicle'],
       aptitudeKey: 'ref',
       options: [
         'Aircraft', 'Anthroform', 'Exotic-Vehicle', 
@@ -982,6 +1015,7 @@ const staticData = {
     },
     profession: {
       label: 'Profession',
+      tags: ['Knowledge'],
       aptitudeKey: 'cog',
       options: [
         'Accounting', 'Appraisal', 'Asteroid_Prospecting', 'Banking',
@@ -993,50 +1027,62 @@ const staticData = {
     },
     programming: {
       label: 'Programming',
+      tags: ['Active', 'Technical'],
       aptitudeKey: 'cog'
     },
     protocol: {
       label: 'Protocol',
+      tags: ['Active', 'Social'],
       aptitudeKey: 'sav'
     },
     psiAssault: {
       label: 'Psi Assault',
+      tags: ['Active', 'Mental', 'Psi'],
       aptitudeKey: 'wil'
     },
     psychosurgery: {
       label: 'Psychosurgery',
+      tags: ['Active', 'Technical'],
       aptitudeKey: 'int'
     },
     research: {
       label: 'Research',
+      tags: ['Active', 'Technical'],
       aptitudeKey: 'cog'
     },
     scrounging: {
       label: 'Scrounging',
+      tags: ['Active', 'Mental'],
       aptitudeKey: 'int'
     },
     seekerWeapons: {
       label: 'Seeker Weapons',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'coo'
     },
     sence: {
       label: 'Sence',
+      tags: ['Active', 'Mental', 'Psi'],
       aptitudeKey: 'int'
     },
     sprayWeapons: {
       label: 'Spray Weapons',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'coo'
     },
     swimming: {
       label: 'Swimming',
+      tags: ['Active', 'Physical'],
       aptitudeKey: 'som'
     },
     thrownWeapons: {
       label: 'Thrown Weapons',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'coo'
     },
     unarmedConbat: {
       label: 'Unarmed Combat',
+      tags: ['Active', 'Combat'],
       aptitudeKey: 'som'
     },
   }
@@ -1086,7 +1132,25 @@ const dynamicData = {
     traits: 0
   },
   skills: {
-    exoticMelee: { Spear: 4 }
+  },
+  cp: {
+    aptitudes: 35,
+    skillsActive: 0,
+    skillsKnowledge: 0
+  }
+}
+
+function skillArrayByTag (tag) {
+  const skillKeys = Object.keys(staticData.skills)
+  const skillAry = []
+  skillKeys.forEach(skillKey => {
+    const skill = staticData.skills[skillKey]
+    if(skill.tags.indexOf(tag) !== -1) skillAry.push(skillKey)
+  });
+  if(skillAry.length <= 0) {
+    console.warn("skillArrayByTag() was unable to find and skills with tag " + tag)
+  }else{
+    return skillAry
   }
 }
 
@@ -1130,6 +1194,17 @@ function SimpleDropDown (props){
 function Aptitudes (props) {
   const fixed = props.dataStatic;
   const dynamic = props.dataDynmic;
+  function updateCP(event, key){
+    const value = event.target.value
+    const aptValArray = Object.keys(dynamic.aptitudes).map( aptKey => {
+      if(aptKey === key) return parseInt(value, 10)
+      else return parseInt(dynamic.aptitudes[aptKey].value, 10)
+    })
+    const total = aptValArray.reduce((a, b) => a + b)
+
+    props.spendPoints(total, 'aptitudes')
+    props.handleChange(event, key, 'value')
+  }
   return(
     <section className='character-aptitudes'>
       {Object.keys(dynamic.aptitudes).map((key) => {
@@ -1155,18 +1230,16 @@ function Aptitudes (props) {
               min='5' max='30' 
               value={myData.value}
               step='1'
-              onChange={event => props.handleChange(event, key, 'value')}
+              onChange={event => updateCP(event, key)}
             />
             <p>{myData.morphBonus}</p>
             <p style={alertStyle}>{maxApt}</p>
             <p>{myData.total}</p>
           </label>            
         )
-
       } ) }
-      <label 
-        className='single-aptitude'
-      >
+
+      <label className='single-aptitude'>
         <p>Aptitudes</p>
         <p>Base Score</p>
         <p>Sleeve Mod</p>
@@ -1177,9 +1250,25 @@ function Aptitudes (props) {
   )
 }
 
+function Counter (props) {
+  const pontsTotal = props.pontsTotal
+  const pontsSpent = props.pontsSpent
+  const style = { color: 'black'}
+  if(pontsSpent > pontsTotal) Object.assign( style, {color: 'red', fontWeight: 'bold'})
+  return (
+    <div className='Char-Builder_Point-Counter'>
+      <strong>Points Spent:</strong>
+      <p style={style}>{pontsSpent}</p>
+      <p> / </p>
+      <p>{pontsTotal}</p>
+    </div>
+  )
+}
+
 class Skills extends Component{
   constructor(props){
     super(props)
+    this.totalePoinstSpent = 0
     this.SimpleSkill = this.SimpleSkill.bind(this)
     this.TemplateSkill = this.TemplateSkill.bind(this)
   }
@@ -1231,12 +1320,9 @@ class Skills extends Component{
       let charSubSkills = dataDynmic.skills[skillKey]
       if(charSubSkills){
         charSubSkills = charSubSkills[_key]
-        if(charSubSkills >= 0){
-          return true
-        }
-      } else {
-        return false
+        if(charSubSkills >= 0) return true
       }
+      return false
     })
     
     return (
@@ -1308,8 +1394,36 @@ class Skills extends Component{
       </>
     )
   }
+  componentDidUpdate(){
+    const characterSkills = this.props.dataDynmic.skills
+    const totalValues = skillKey => {
+      if(characterSkills[skillKey]){
+        const mySkill = characterSkills[skillKey]
+        if('number' === (typeof mySkill)){
+          //return simpleSkill value
+          if(mySkill > 60) return ((mySkill - 60) * 2) + 60
+          return mySkill
+        }else{
+          //return all subSkill values as a single value
+          return Object.keys(mySkill)
+          .map( subSkillKey => {
+            if(mySkill[subSkillKey] > 60) return ((mySkill[subSkillKey] - 60) * 2) + 60
+            return mySkill[subSkillKey]
+          }).reduce((a,b)=> a + b )
+        }
+      }else{
+        return 0
+      }
+    }
+    const simplSkillArray = this.props.skillList.map(totalValues)
+    const total = simplSkillArray.reduce((a, b) => a + b)
+    if(total !== this.totalePoinstSpent){
+      this.totalePoinstSpent = total
+      this.props.spendPoints(total)
+    }
+  }
   render(){
-    const skillList = this.props.dataStatic.skills
+    const skillList = this.props.skillList
     const dataDynmic = this.props.dataDynmic
     return(
       <section className='skill_block' >
@@ -1324,8 +1438,8 @@ class Skills extends Component{
           <p className='skill_cell' >Apt. Mod</p>
           <p className='skill_cell' >Special Bonuses</p>
         </label>
-        {Object.keys(skillList).map( skillKey => {
-          const fixedSkill = skillList[skillKey];
+        {skillList.map( skillKey => {
+          const fixedSkill = this.props.dataStatic.skills[skillKey];
 
           //If Normal Skill then render a SimpleSkill
           if(!fixedSkill.options){
@@ -1380,14 +1494,21 @@ class Skills extends Component{
 
 class CharacterSheet extends Component {
   constructor(props){
-    super(props);
-    this.state = dynamicData;
-    this.staticData = staticData;
+    super(props)
+    this.state = dynamicData
+    this.staticData = staticData
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleNewSubSkill = this.handleNewSubSkill.bind(this);
-    this.handleBackground = this.handleBackground.bind(this);
-    this.handleFaction = this.handleFaction.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this)
+    this.handleNewSubSkill = this.handleNewSubSkill.bind(this)
+    this.handleBackground = this.handleBackground.bind(this)
+    this.handleFaction = this.handleFaction.bind(this)
+    this.handleCP = this.handleCP.bind(this)
+  }
+
+  handleCP(change, attribute){
+    const newCP = this.state.cp
+    newCP[attribute] = change
+    this.setState({cp: newCP})
   }
 
   handleBackground(data){
@@ -1411,7 +1532,7 @@ class CharacterSheet extends Component {
 
     //Subskills will not be displayed if the are not set to a min of Zero in Dynamic Data
     //so in order for sub skills with background mods to be displayed they need to be set to zero
-    skillMod.map( option => {
+    skillMod.forEach( option => {
       const skillKey = option.skillKey
       const fixedSkill = this.staticData.skills[skillKey]
       //if the skill 
@@ -1469,7 +1590,7 @@ class CharacterSheet extends Component {
         //if the character does not have the currnent option's skill
         if(!newState.skills[skillKey]){
           //...then create it
-          const newSubSkill = new Object
+          const newSubSkill = {}
           newSubSkill[subSkillKey] = 0
           newState.skills[skillKey] = newSubSkill
         }else{
@@ -1511,10 +1632,10 @@ class CharacterSheet extends Component {
     if (isNum || isNum === 0) value = isNum;
     // else if (isObj) value = isObj;
     let newState = this.state;
-
     for(let i = 0, state = newState; i < keys.length; i++){
       if(!keys[(i + 1)]) {
         state[keys[i]] = value;
+        break
       }else{
         state = state[keys[i]];
       }
@@ -1556,11 +1677,32 @@ class CharacterSheet extends Component {
   }
 
   render(){
-    const {} = this.staticData;
-    const formMap = this.staticData;
+    const {
+      playerName, characterName, subjectiveAge, 
+      objectiveAge, sleeve, background, faction
+    } = this.staticData;
+    const formMap = {
+      one: {label: 'Step One', type: 'header'},
+      playerName: playerName,
+      characterName: characterName,
+      subjectiveAge: subjectiveAge,
+      objectiveAge: objectiveAge,
+      two: {label: 'Step Two', type: 'header'},
+      background: background,
+      three: {label: 'Step Three', type: 'header'},
+      faction: faction,
+      four: {label: 'Step Four', type: 'header'},
+      aptitudes: {type: 'aptitudes', cp: 105},
+      five: {label: 'Step Five', type: 'header'},
+      skillsActive: {type: 'skills', cp: 400, list: skillArrayByTag('Active')},
+      six: {label: 'Step Six', type: 'header'},
+      skillsKnowledge: {type: 'skills', cp: 300, list: skillArrayByTag('Knowledge')},
+      seven: {label: 'Step Seven', type: 'header'},
+      sleeve: sleeve
+    }
     return(
       <>
-        {Object.keys(formMap).map( key => {
+        {Object.keys(formMap).map( (key, index) => {
           const item = formMap[key];
           if (item.type === 'text') {
             return (
@@ -1588,9 +1730,10 @@ class CharacterSheet extends Component {
                 onSelection={this.handleBackground}
                 form={this.staticData.background}
                 dataStatic={this.staticData}
+                key={['overComp', key, index].join('_')}
               />
             )
-          }else if (item.type === 'faction') {
+          } else if (item.type === 'faction') {
             return (
               <Background
                 onSelection={this.handleFaction}
@@ -1598,27 +1741,41 @@ class CharacterSheet extends Component {
                 dataStatic={this.staticData}
               />
             )
-          } else if (!item.type) {
-            return <></>
+          } else if (item.type === 'header') {
+            return <h1 className='Char-Builder_Header' key={`header_${key}`}>{item.label}</h1>
+          } else if (item.type === 'aptitudes') {
+            return (
+              <>
+                <Counter pontsSpent={this.state.cp.aptitudes} pontsTotal={item.cp} />
+                <Aptitudes
+                  spendPoints={this.handleCP}
+                  dataDynmic={this.state}
+                  dataStatic={this.staticData}
+                  handleChange={(event, keyOne, keyTwo ) => this.handleInputChange(event, 'aptitudes', keyOne, keyTwo)}
+                />
+              </>
+            )
+          } else if (item.type === 'skills') {
+            return (
+              <>
+                <Counter pontsSpent={this.state.cp[key]} pontsTotal={item.cp} />
+                <Skills
+                  skillList={item.list}
+                  spendPoints={ (points) => this.handleCP(points, key)}
+                  dataDynmic={this.state}
+                  dataStatic={this.staticData}
+                  handleChange={(event, skill, subSkill) => {
+                    this.handleInputChange(event, 'skills', skill, subSkill)
+                  }}
+                  handleNewSubSkill={this.handleNewSubSkill}
+                />
+              </>
+            )
           } else {
             return <p>Failed to render element</p>
           }
         })}
-        <br/>
-        <Aptitudes 
-          dataDynmic={this.state}
-          dataStatic={this.staticData}
-          handleChange={(event, keyOne, keyTwo ) => this.handleInputChange(event, 'aptitudes', keyOne, keyTwo)}
-        />
-        <br/>
-        <Skills
-          dataDynmic={this.state}
-          dataStatic={this.staticData}
-          handleChange={(event, skill, subSkill) => {
-            this.handleInputChange(event, 'skills', skill, subSkill)
-          }}
-          handleNewSubSkill={this.handleNewSubSkill}
-        />
+        <br/>        
         <br/>
         <button onClick={()=>{
           console.log(this.state);
